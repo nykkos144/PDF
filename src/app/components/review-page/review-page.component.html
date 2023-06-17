@@ -1,0 +1,75 @@
+
+<topbar></topbar>
+
+<div *ngIf="pdf && pages.length == numPages" class="container">
+
+    <div class="bar">
+
+        <div class="bar-top">
+            <div class="bar-name">
+                <label for="">{{ getName().length > 20 ? getName().slice(0, 17) + '...' : getName() }} <span> .pdf</span></label>
+                <div><img src="assets/icons/pen.svg" alt=""></div>
+            </div>
+
+            <div class="bar-size">
+                <label for="">{{ originalSize && formatSize(originalSize) }}</label>
+                <img src="assets/icons/arrow-right-light.svg" alt="">
+                <label for="">{{ size && formatSize(size) }} <span>( {{ originalSize && size && (((size - originalSize) / originalSize* 100) > 0 ? '+' + (((size - originalSize) / originalSize* 100).toFixed(0)) : (((size - originalSize) / originalSize* 100).toFixed(0))) }}% )</span></label>
+            </div>
+            
+            <div class="bar-btn">
+                <div (click)="handleSave()">
+                    <img src="assets/icons/download.svg" alt="">
+                    Save
+                </div>
+                <div><img src="assets/icons/share.svg" alt=""></div>
+            </div>
+        </div>
+
+        <div class="bar-more">
+            <label class="bar-more-label">CONTINUE IN</label>
+
+            <a *ngFor="let id of toolsList" [routerLink]="['/tool/' + id]">
+                <ng-container *ngIf="getToolById(id) as tool">
+                    <div><img src="{{ tool.image }}" alt=""></div>
+                    <label>{{ tool.name }}</label>
+                    <img src="assets/icons/arrow-right-min.svg" class="a-arrow">
+                </ng-container>
+            </a>
+
+        </div>
+
+        <div class="bar-control">
+            <div class="bar-control-btn">
+                <img src="assets/icons/arrow-left-min.svg" [ngStyle]="{'height': '14px'}">
+            </div>
+            <div class="bar-control-pages">1 / {{ numPages }}</div>
+            <div class="bar-control-btn">
+                <img src="assets/icons/arrow-right-min.svg"  [ngStyle]="{'height': '14px'}">
+            </div>
+            <div class="bar-control-btn">
+                <img src="assets/icons/zoom-out.svg" alt="">
+            </div>
+            <div class="bar-control-btn">
+                <img src="assets/icons/zoom-in.svg" alt="">
+            </div>
+            <div class="bar-control-btn">
+                <img src="assets/icons/fit-width.svg" alt="">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="showcase">
+
+        <div *ngFor="let page of pages; let index = index" class="showcase-page">
+            <img src="{{ page }}" [ngStyle]="{'width': calculatePageWidth(index) + '%'}" />
+            <!-- <img src="{{ page }}" /> -->
+            <label for="">{{ index + 1 }}</label>
+        </div>
+
+    </div>
+
+</div>
+
+<div *ngIf="!pdf || (pdf && pages.length !== numPages)" class="loader">{{ pdf ? (((pages.length + 0) / numPages) * 100).toFixed(0) + '%' : '0%' }}</div>

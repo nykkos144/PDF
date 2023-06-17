@@ -1,0 +1,125 @@
+:root {
+    --white-filter: brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(30%) hue-rotate(278deg) brightness(107%) contrast(106%);
+    --black-filter: brightness(0) saturate(100%);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+    font-family: Futura;
+    font-weight: 500;
+
+    color: white;
+
+    cursor: default;
+    user-select: none;
+
+    white-space: nowrap;
+    // overflow-x: hidden;
+}
+*::-webkit-scrollbar {
+    width: 10px;
+}
+*::-webkit-scrollbar-track {
+    background-color: #000000;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #202020;
+}
+
+
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    max-width: 100vw;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    // overflow-y: hidden;
+
+    background-color: #000000;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    pointer-events: none;
+    user-select: none;
+}
+
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+  
+input {
+    cursor: text;
+    outline: none;
+}
+
+// label {
+//     cursor: text;
+// }
+  
+  
+@font-face {
+    font-family: Futura;
+    src: url(./assets/fonts/Futura/FuturaPT-Bold.woff2);
+    font-weight: 700;
+}
+@font-face {
+    font-family: Futura;
+    src: url(./assets/fonts/Futura/FuturaPT-Heavy.woff2);
+    font-weight: 600;
+}
+@font-face {
+    font-family: Futura;
+    src: url(./assets/fonts/Futura/FuturaPT-Demi.woff2);
+    font-weight: 500;
+}
+@font-face {
+    font-family: Futura;
+    src: url(./assets/fonts/Futura/FuturaPT-Medium.woff2);
+    font-weight: 450;
+}
+@font-face {
+    font-family: Futura;
+    src: url(./assets/fonts/Futura/FuturaPT-Book.woff2);
+    font-weight: 400;
+}
+  
+
+
+.page-container {
+    width: 100vw;
+    height: 100vh;
+
+    // margin-top: 60px;
+    // margin-left: 60px;
+
+    // padding-top: 30px;
+    // padding-left: 60px;
+
+    overflow-y: auto;
+}
+.page-container::-webkit-scrollbar-track {
+    margin-top: 60px;
+}
+// .page-container:has(sidebar, .sidebar) {
+//     padding-left: 60px;
+// }
+.page-container.has-sidebar {
+    padding-left: 60px;
+}
+

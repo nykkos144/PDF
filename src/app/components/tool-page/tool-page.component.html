@@ -1,0 +1,22 @@
+<topbar></topbar>
+<sidebar [page]="page"></sidebar>
+
+
+<div *ngIf="tool" class="page-container has-sidebar" id="page-container">
+    <div class="container">
+
+        <div class="details">
+            <div><img src="{{ tool.image }}" alt=""></div>
+            <label for="">{{ tool.name.toUpperCase() }}</label>
+            <p>{{ tool.description }}</p>
+        </div>
+
+        <file-controller [tool]="tool"></file-controller>
+        <!-- <file-upload-field [tool]="tool"></file-upload-field> -->
+
+    </div>
+</div>
+
+<div *ngIf="!tool" class="page-container">
+    <label for="">404 NOT FOUND</label>
+</div>

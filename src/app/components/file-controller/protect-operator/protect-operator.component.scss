@@ -1,0 +1,137 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr min-content 60px;
+    grid-template-areas: ". . btn";
+
+    column-gap: 20px;
+
+    width: 100%;
+    height: fit-content;
+
+    padding-right: 30px;
+}
+
+.details {
+    cursor: default;
+    padding: 30px 0px;
+    padding-right: 40px;
+    border: 0px;
+    border-radius: 0px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 30px;
+
+    border-right: 2px solid #202020;
+    padding-left: 40px;
+}
+.details label:nth-of-type(2) {
+    margin-top: 15px;
+}
+
+label {
+    display: block;
+    width: fit-content;
+}
+label:nth-of-type(1) {
+    grid-area: name;
+
+    font-size: 18px;
+}
+label:nth-of-type(2) {
+    grid-area: description;
+
+    color: #505050;
+    font-size: 16px;
+    font-weight: 450;
+
+    white-space: normal;
+
+    margin-top: 5px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+
+    padding: 30px 20px;
+    padding-right: 0px;
+    margin-right: 20px;
+}
+.form label:nth-of-type(2) {
+    margin-top: 5px;
+}
+
+input {
+    pointer-events: all;
+    cursor: text;
+
+    width: 280px;
+    height: 100%;
+
+    font-size: 16px;
+
+    background-color: transparent;
+    border: 2px solid #202020;
+    border-radius: 5px;
+
+    padding: 0px 25px;
+}
+input:nth-of-type(1) {
+    margin-top: 20px;
+    // margin-top: auto;
+}
+input:nth-of-type(2) {
+    margin-top: 10px;
+}
+input::placeholder {
+    color: #505050;
+    font-size: 16px;
+    font-weight: 450;
+}
+input:focus {
+    border-color: #606060;
+    // border: 1px solid white;
+    // border-color: #3D99F5;
+}
+
+.btn-container {
+    padding: 30px 0px;
+}
+.btn {
+    grid-area: btn;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 60px;
+    height: 100%;
+    min-height: 190px;
+
+    background-color: var(--main-color);
+    border: 0px solid var(--main-color);
+    border-radius: 5px;
+
+    // margin-left: 10px;
+    
+}
+.btn img {
+    width: 16px;
+}
+
+.btn:hover {
+    background-color: transparent;
+    border-width: 2px;
+}
+.btn:hover img {
+    filter: var(--main-color-filter);
+}
+
+
+
+
+

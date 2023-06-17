@@ -1,0 +1,21 @@
+<div *ngIf="tool && fileSize" class="container">
+
+    <div *ngFor="let option of tool.options; let index = index" class="option" [ngClass]="{ 'selected': activeOption === index, 'four': ['pdf-converter'].includes(tool.id), 'just-description': !option.image }" (click)="changeActiveOption(index)">
+        
+        <div class="option-overlay"></div>
+        <div class="option-selector"></div>
+        <label for="">{{ option.name }}</label>
+        <label for="">{{ option.description }}</label>
+        <!-- <img src="assets/icons/pdf-file-big.svg" alt=""> -->
+
+        <img *ngIf="option.image" src="{{ option.image }}" alt="">
+
+        <ng-container *ngIf="tool.id == 'compress'">
+            <label>Estimated size</label>
+            <label>{{ formatSize(fileSize * (1 - option.extraData.compressionLevel)) }} <span>( -{{ option.extraData.compressionLevel * 100 }}% )</span></label>
+        </ng-container>
+
+    </div>
+
+    <div class="btn" (click)="handleSubmit()"><img src="assets/icons/arrow-right.svg"></div>
+</div>

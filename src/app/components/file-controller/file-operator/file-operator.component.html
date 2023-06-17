@@ -1,0 +1,43 @@
+<div *ngIf="file && tool" class="container">
+    <div class="details">
+        <label for="">{{ formatType(file.name) }}</label>
+        <label for="">{{ file.name.length > 50 ? file.name.slice(0, 50) + "..." : file.name }}</label>
+        <!-- <label for="">{{ fileSize && formatSize(fileSize) }}</label> -->
+        <label>{{ fileSize && formatSize(fileSize) }}</label>
+        <div (click)="fileRemoveCallback()"><img src="assets/icons/close.svg" alt=""></div>
+    </div>
+
+
+    <!-- ///////////////////////////////////// OPTIONS ///////////////////////////////////// -->
+
+    <options-operator *ngIf="tool.options"
+        [tool]="tool"
+        [fileSize]="fileSize"
+        [submitOptionCallback]="submitOptionCallback"
+    ></options-operator>
+
+    <!-- ///////////////////////////////////// OPTIONS ///////////////////////////////////// -->
+
+
+    <!-- ///////////////////////////////////// PROTECT ///////////////////////////////////// -->
+
+    <div *ngIf="tool.id === 'protect'">
+        PROTECT
+    </div>
+
+    <!-- ///////////////////////////////////// PROTECT ///////////////////////////////////// -->
+
+
+    <!-- ///////////////////////////////////// PAGE EDITOR ///////////////////////////////////// -->
+
+    <page-editor *ngIf="['reorder-pages', 'delete-pages', 'split', 'merge'].includes(tool.id)"
+        [tool]="tool"
+        [file]="file"
+        [updateFileSizeCallback]="updateFileSize"
+        [submitCallback]="submitCallback"
+    ></page-editor>
+
+    <!-- ///////////////////////////////////// PAGE EDITOR ///////////////////////////////////// -->
+
+
+</div>

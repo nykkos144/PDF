@@ -1,0 +1,29 @@
+<div class="container" [ngClass]="{'bordered': page == 'edit'}">
+    <div class="button" style="grid-area: minimize-btn;" style="grid-area: minimize-btn;" (click)="handleMinimize()">
+        <img src="assets/icons/minimize.svg" alt="" >
+    </div>
+    <div class="button" style="grid-area: maximize-btn;" style="grid-area: maximize-btn;" (click)="handleMaximize()">
+        <img src="assets/icons/maximize.svg" alt="">
+    </div>
+    <div class="button" style="grid-area: close-btn;" style="grid-area: close-btn;" (click)="handleClose()">
+        <img src="assets/icons/close.svg" alt="">
+    </div>
+</div>
+
+<div class="move-container" [ngClass]="{'active': moving}">
+    <!-- <label for="">CLICK AND MOVE MOUSE</label> -->
+    <img src="assets/icons/move.svg" alt="">
+    <!-- <label for="">TO MOVE WINDOW</label> -->
+</div>
+
+<!-- <div class="container">
+    <div class="button" style="grid-area: close-btn;" style="grid-area: close-btn;">
+        <img src="assets/icons/close.svg" alt="">
+    </div>
+    <div class="button" style="grid-area: maximize-btn;" style="grid-area: maximize-btn;">
+        <img src="assets/icons/maximize.svg" alt="">
+    </div>
+    <div class="button" style="grid-area: minimize-btn;" style="grid-area: minimize-btn;">
+        <img src="assets/icons/minimize.svg" alt="" >
+    </div>
+</div> -->

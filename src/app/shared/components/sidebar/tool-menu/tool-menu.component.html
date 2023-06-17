@@ -1,0 +1,19 @@
+<div class="container" [ngClass]="{'open': toolsOpen}" (click)="changeMenuState($event)">
+
+    <div class="menu">
+
+        <div *ngFor="let block of toolsList">
+            <label class="category">{{ block.category.toUpperCase() }}</label>
+
+            <a *ngFor="let id of block.tools" [routerLink]="['/tool/' + id]"  class="item">
+                <!-- <ng-container *ngVar="getToolById(tool); let tool"> -->
+                <ng-container *ngIf="getToolById(id) as tool">
+                    <div><img src="{{ tool.image }}" alt=""></div>
+                    <label>{{ tool.name }}</label>
+                </ng-container>
+            </a>
+        </div>
+
+    </div>
+
+</div>

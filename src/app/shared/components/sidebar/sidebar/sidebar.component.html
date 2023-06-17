@@ -1,0 +1,24 @@
+<div class="container sidebar" [ngClass]="{'has-other-tool': tool}">
+    
+    <a [routerLink]="['/home']" class="button sidebar-button" [ngClass]="{'active': page == 'home'}" style="grid-area: home-btn;" >
+        <img src="assets/icons/home.svg" alt="">
+    </a>
+    <div class="button sidebar-button" [ngClass]="{'active': toolsOpen}" style="grid-area: tools-btn;" (click)="changeMenuState($event)" >
+        <img src="assets/icons/tools.svg" alt="">
+    </div>
+    <div class="button sidebar-button" style="grid-area: new-pdf-btn;" >
+        <img src="assets/icons/new-pdf.svg" alt="">
+    </div>
+    <a [routerLink]="['/settings']" class="button sidebar-button" [ngClass]="{'active': !toolsOpen && page == 'settings'}" style="grid-area: settings-btn;" >
+        <img src="assets/icons/settings.svg" alt="">
+    </a>
+
+
+    <div *ngIf="tool" class="button sidebar-button active" style="grid-area: other-tool-btn;" >
+        <img src="{{ tool.image }}" alt="">
+    </div>
+
+
+    <tool-menu [toolsOpen]="toolsOpen" [changeMenuState]="changeMenuState"></tool-menu>
+
+</div>

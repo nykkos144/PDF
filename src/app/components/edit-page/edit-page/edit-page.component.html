@@ -1,0 +1,104 @@
+<!-- <p>edit-page works!!!</p> -->
+
+<div class="main" *ngIf="pdf && pages.length == numPages">
+
+    <div class="topbar">
+
+        <div class="menu-btn">
+            <img src="assets/icons/menu.svg" alt="">
+        </div>
+        <div class="name-container">
+            <!-- <label for="">09. Two Teams<span>.pdf</span></label> -->
+            <label for="">{{ getName() }}</label>
+            <label for="">{{ size && formatSize(size) }}</label>
+        </div>
+
+        <!-- <div class="dropdown">
+            <img src="assets/icons/edit-text.svg" alt="">
+            <label for="">Edit text</label>
+        </div> -->
+
+        <span></span>
+
+        <div class="btn-container">
+            <div class="btn" [ngClass]="{'selected': selectedEdit == 0}" (click)="changeSelectedEdit(0)">
+                <img src="assets/icons/edit-text.svg" alt="">
+                <label for="">Edit text</label>
+                <div></div>
+            </div>
+            <div class="btn" [ngClass]="{'selected': selectedEdit == 1}" (click)="changeSelectedEdit(1)">
+                <img src="assets/icons/organize.svg" alt="">
+                <label for="">Organize</label>
+                <div></div>
+            </div>
+        </div>
+
+    </div>
+    <topbar page="edit"></topbar>
+
+
+    <!-- ///////////////////////// EDIT TEXT ///////////////////////// -->
+
+    <div class="container">
+
+        <div class="sidebar">
+            <div class="btn" [ngClass]="{'selected': selectedTool == 0}" (click)="changeSelectedTool(0)"><img src="assets/icons/cursor.svg" alt=""></div>
+            <span></span>
+            <div class="btn" [ngClass]="{'selected': selectedTool == 1}" (click)="changeSelectedTool(1)"><img src="assets/icons/textbox.svg" alt=""></div>
+            <span></span>
+            <div class="btn" [ngClass]="{'selected': selectedTool == 2}" (click)="changeSelectedTool(2)"><img src="assets/icons/highlight-text.svg" alt=""></div>
+            <span></span>
+            <div class="btn" [ngClass]="{'selected': selectedTool == 3}" (click)="changeSelectedTool(3)"><img src="assets/icons/pencil.svg" alt=""></div>
+            <div class="btn" [ngClass]="{'selected': selectedTool == 4}" (click)="changeSelectedTool(4)"><img src="assets/icons/highlighter.svg" alt=""></div>
+            <div class="btn" [ngClass]="{'selected': selectedTool == 5}" (click)="changeSelectedTool(5)"><img src="assets/icons/eraser.svg" alt=""></div>
+            <span></span>
+            <div class="btn" [ngClass]="{'selected': selectedTool == 6}" (click)="changeSelectedTool(6)"><img src="assets/icons/shape.svg" alt=""></div>
+            <div class="btn" [ngClass]="{'selected': selectedTool == 7}" (click)="changeSelectedTool(7)"><img src="assets/icons/image.svg" alt=""></div>
+            <!-- <div class="btn"><img src="assets/icons/image.svg" alt=""></div> -->
+            <!-- <span></span> -->
+        </div>
+
+        <div class="showcase">
+
+            
+            <div *ngFor="let page of pages; let index = index" class="showcase-page">
+                <!-- {{ page.aspectRatio }} -->
+                <img src="{{ page.url }}" (mousedown)="handleMouseDown($event, index)" (mousemove)="handleMouseMove($event, index)" (mouseup)="handleMouseUp($event, index)" draggable="false"/>
+                <!-- <img src="{{ page }}" /> -->
+                <!-- <label for="">{{ index + 1 }}</label> -->
+
+                <div *ngFor="let item of page.content" class="showcase-text" [ngStyle]="{'left.px': item.left, 'bottom.px': (item.bottom - item.offset / 2)}">
+                    <!-- <div *ngFor="let shape of page.shapes" class="showcase-shape rect" [ngStyle]="{'left': shape.x}"> -->
+                    {{ item.text }}
+                </div>
+
+                <div *ngFor="let shape of page.shapes" class="showcase-shape rect" [ngStyle]="{'left.px': shape.x, 'top.px': shape.y, 'width.px': shape.width, 'height.px': shape.height}">
+                <!-- <div *ngFor="let shape of page.shapes" class="showcase-shape rect" [ngStyle]="{'left': shape.x}"> -->
+                    {{ shape.x }} {{ shape.y }} {{ shape.width }} {{ shape.height }}
+                </div>
+                
+            </div>
+
+            <!-- <div #selector *ngIf="selecting" class="showcase-selector" [ngStyle]="{'top.px': selectorTop, 'left.px': selectorLeft, 'width.px': selectorWidth, 'height.px': selectorHeight}"></div> -->
+            <div #selector *ngIf="selecting" class="showcase-selector" [ngStyle]="{'top.px': selectorTop > 0 ? selectorTop : 'auto', 'bottom.px': selectorTop < 0 ? (selectorTop * -1) : 'auto', 'left.px': selectorLeft > 0 ? selectorLeft : 'auto', 'right.px': selectorLeft < 0 ? (selectorLeft * -1) : 'auto', 'width.px': selectorWidth, 'height.px': selectorHeight}"></div>
+
+        </div>
+
+        <div class="panel">
+            <div class="submit-btn" [ngStyle]="{'background-color': 'blue', 'width': '100%', 'height': '100px'}" (click)="handleSubmit()"></div>
+        </div>
+
+    </div>
+
+    <!-- ///////////////////////// EDIT TEXT ///////////////////////// -->
+    
+</div>
+
+
+<div *ngIf="!pdf || (pdf && pages.length !== numPages)" class="loader">{{ pdf ? (((pages.length + 0) / numPages) * 100).toFixed(0) + '%' : '0%' }}</div>
+
+
+
+
+
+

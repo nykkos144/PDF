@@ -1,0 +1,58 @@
+<div class="modal-container">
+
+    <div class="extract-modal">
+        <div class="modal-top-bar">
+            <label [ngStyle]="{'grid-area': 'label'}" >{{ type == 'extract' ? 'Extract PDFs' : 'Split PDF' }}</label>
+            <div [ngStyle]="{'grid-area': 'filter-btn'}" [ngClass]="{'selected': filterOpen}" (click)="handleFilterClick()"><img src="assets/icons/filter.svg" alt=""></div>
+            <div [ngStyle]="{'grid-area': 'close-btn'}" (click)="closeCallback()" ><img src="assets/icons/close.svg" alt=""></div>
+        </div>
+        <div *ngIf="filterOpen" class="modal-filter-bar">
+            
+            <ng-container *ngIf="type == 'extract'">
+                <div class="modal-filter-bar-option" [ngClass]="{'selected': selectedFilter == 0}" (click)="handleFilterSelect(0)">
+                    <div></div>
+                    <label for="">All pages into one PDF</label>
+                </div>
+                <div class="modal-filter-bar-option" [ngClass]="{'selected': selectedFilter == 1}" (click)="handleFilterSelect(1)">
+                    <div></div>
+                    <label for="">Each page as a separate PDF</label>
+                </div>
+                <div *ngIf="selectedSeperators!.length > 0" class="modal-filter-bar-option selected" [ngClass]="{'selected': selectedFilter == 2}" (click)="handleFilterSelect(2)">
+                    <div></div>
+                    <label for="">Use seperators</label>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="type == 'split'">
+                <div class="modal-filter-bar-option" [ngClass]="{'selected': selectedFilter == 0}" (click)="handleFilterSelect(0)">
+                    <div></div>
+                    <label for="">Each page as a separate PDF</label>
+                </div>
+                <div *ngIf="selectedSeperators.length > 0" class="modal-filter-bar-option" [ngClass]="{'selected': selectedFilter == 1}" (click)="handleFilterSelect(1)">
+                    <div></div>
+                    <label for="">Use seperators</label>
+                </div>
+            </ng-container>
+
+        </div>
+
+        <div class="modal-showcase">
+
+            <div *ngFor="let pdf of resultList; let index = index">
+                <img src="assets/icons/pdf-file-big.svg" alt="">
+                <!-- <label for="">{{ (pdf.name).split('.')[0] }} <span>.pdf</span></label> -->
+                <label for="">{{ getFileNameWithoutExtension(pdf.name) }} <span>.pdf</span></label>
+                <label for="">Pages - {{ getModifiedExtracted(pdf.pages).join(', ') }}</label>
+            </div>
+
+        </div>
+
+        <div class="modal-btn">
+            <div (click)="submitCallback(resultList)">
+                <!-- <img src="assets/icons/arrow-right.svg" alt=""> -->
+                <img src="assets/icons/download.svg" alt="">
+                <label for="">Save</label>
+            </div>
+        </div>
+    </div>
+
+</div>

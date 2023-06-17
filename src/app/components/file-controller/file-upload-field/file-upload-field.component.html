@@ -1,0 +1,16 @@
+<div *ngIf="tool" class="container" (click)="handleFileFieldClick($event)">
+
+    <input #fileInput (change)="handleFileUpload($event)" type="file" accept="{{ tool.allowedFiles || '.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif,.tiff' }}">
+
+    <div class="dash"></div>
+
+    <img src="assets/icons/file-upload-img.svg" class="img">
+
+    <div class="choose-files-btn">CHOOSE FILES</div>
+    <div class="dropdown-btn file-upload-dropdown"><img src="assets/icons/arrow-down.svg" alt=""></div>
+
+    <label class="secondary-text">OR DROP FILES HERE</label>
+
+</div>
+
+

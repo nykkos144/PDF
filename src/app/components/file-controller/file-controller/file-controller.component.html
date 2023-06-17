@@ -1,0 +1,71 @@
+<!-- <p>file-controller works!</p> -->
+
+<!-- <file-upload-field [tool]="tool" [file]="file" [fileSize]="fileSize" [fileUploadCallback]="handleFileUpload" [fileRemoveCallback]="handleFileRemove"></file-upload-field> -->
+
+<file-upload-field *ngIf="!file"
+    [tool]="tool" 
+    [fileUploadCallback]="handleFileUpload"
+    [fileRemoveCallback]="handleFileRemove"
+></file-upload-field>
+
+<!-- <file-operator *ngIf="file"
+    [tool]="tool" 
+    [file]="file" 
+    [fileSize]="fileSize" 
+    [fileRemoveCallback]="handleFileRemove"
+    [updateFileSize]="updateFileSize"
+    [submitCallback]="handleSubmit"
+    [submitOptionCallback]="handleOptionSubmit"
+></file-operator> -->
+
+
+<div *ngIf="file && tool" class="container">
+    
+    <div class="details">
+        <label for="">{{ formatType(file.name) }}</label>
+        <label for="">{{ file.name.length > 50 ? file.name.slice(0, 50) + "..." : file.name }}</label>
+        <!-- <label for="">{{ fileSize && formatSize(fileSize) }}</label> -->
+        <label>{{ fileSize && formatSize(fileSize) }}</label>
+        <div (click)="handleFileRemove()"><img src="assets/icons/close.svg" alt=""></div>
+    </div>
+
+
+    <!-- ///////////////////////////////////// OPTIONS ///////////////////////////////////// -->
+
+    <options-operator *ngIf="tool.options"
+        [tool]="tool"
+        [fileSize]="fileSize"
+        [submitOptionCallback]="handleOptionSubmit"
+    ></options-operator>
+
+    <!-- ///////////////////////////////////// OPTIONS ///////////////////////////////////// -->
+
+
+    <!-- ///////////////////////////////////// PROTECT ///////////////////////////////////// -->
+
+    <protect-operator *ngIf="tool.id === 'protect'"
+        [submitCallback]="handleSubmit"
+    ></protect-operator>
+
+    <!-- ///////////////////////////////////// PROTECT ///////////////////////////////////// -->
+
+
+    <!-- ///////////////////////////////////// PAGE EDITOR ///////////////////////////////////// -->
+
+    <page-editor *ngIf="['reorder-pages', 'delete-pages', 'split', 'merge'].includes(tool.id)"
+        [tool]="tool"
+        [file]="file"
+        [updateFileSizeCallback]="updateFileSize"
+        [submitCallback]="handleSubmit"
+    ></page-editor>
+
+    <!-- ///////////////////////////////////// PAGE EDITOR ///////////////////////////////////// -->
+
+
+    <!-- ///////////////////////////////////// ROUTE ///////////////////////////////////// -->
+
+
+
+    <!-- ///////////////////////////////////// ROUTE ///////////////////////////////////// -->
+
+</div>

@@ -1,0 +1,223 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 70px;
+    grid-template-areas: ". . btn";
+
+    column-gap: 20px;
+
+    width: 100%;
+    height: fit-content;
+    // min-height: 250px;
+
+    padding: 30px;
+}
+.container:has(.four) {
+    grid-template-columns: 1fr 1fr 70px;
+    grid-template-areas: ". . btn"
+                        ". . btn";
+
+    row-gap: 20px;
+}
+
+.option {
+    position: relative;
+
+    cursor: pointer;
+
+    display: grid;
+    grid-template-rows: min-content 10px min-content 30px min-content 5px min-content;
+    grid-template-columns: min-content 1fr;
+    grid-template-areas: "name name"
+                        ". ."
+                        "description description"
+                        ". ."
+                        "img label"
+                        "img ."
+                        "img size";
+
+    // row-gap: 5px;
+
+    column-gap: 30px;
+
+    width: 100%;
+    height: 100%;
+
+    // background-color: #101010;
+    border: 2px solid #202020;
+    border-radius: 5px;
+
+    padding: 25px 30px;
+}
+.option * {
+    pointer-events: none;
+}
+
+
+
+.option-overlay {
+    pointer-events: none;
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: red;
+
+    opacity: 0;
+}
+
+
+.option-selector {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+
+    // width: 18px;
+    // height: 18px;
+    // outline-offset: 3px;
+
+    width: 16px;
+    height: 16px;
+    outline-offset: 4px;
+
+    outline: 2px solid #303030;
+    border-radius: 50%;
+}
+
+
+.option label:nth-of-type(1) {
+    grid-area: name;
+
+    font-size: 18px;
+}
+.option label:nth-of-type(2) {
+    grid-area: description;
+
+    color: #505050;
+    font-size: 16px;
+    font-weight: 450;
+
+    white-space: normal;
+}
+.option label:nth-of-type(3) {
+    grid-area: label;
+
+    color: var(--main-color);
+    font-size: 18px;
+    font-weight: 450;
+}
+.option label:nth-of-type(4) {
+    grid-area: size;
+
+    color: white;
+    font-size: 16px;
+    font-weight: 450;
+
+    display: inline-block;
+    align-items: flex-end;
+}
+.option label span {
+    display: inline-block;
+    align-self: flex-end;
+
+    color: #505050;
+    font-size: 14px;
+    font-weight: 450;
+
+    margin-left: 5px;
+}
+
+.option img {
+    grid-area: img;
+
+    filter: var(--main-color-filter);
+}
+
+.option:not(.selected, .full):hover {
+    background-color: #101010;
+}
+.option:not(.selected, .full):hover .option-selector {
+    outline-color: #505050;
+    background-color: #303030;
+}
+
+.option.selected {
+    // background-color: rgba(var(--main-color), .2);
+    border-color: var(--main-color);
+}
+.option.selected .option-overlay {
+    background-color: var(--main-color);
+    opacity: .2;
+}
+.option.selected .option-selector {
+    background-color: var(--main-color);
+    outline-color: var(--main-color);
+}
+
+
+.btn {
+    grid-area: btn;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 60px;
+    height: 100%;
+    min-height: 190px;
+
+    background-color: var(--main-color);
+    border: 0px solid var(--main-color);
+    border-radius: 5px;
+
+    margin-left: 10px;
+}
+.btn img {
+    width: 16px;
+}
+
+.btn:hover {
+    background-color: transparent;
+    border-width: 2px;
+}
+.btn:hover img {
+    filter: var(--main-color-filter);
+}
+
+
+
+
+.option.four {
+    height: calc(170px / 2);
+
+    // grid-template-rows: min-content 10px min-content 30px min-content 5px min-content;
+    grid-template-rows: min-content;
+    grid-template-columns: min-content min-content;
+    grid-template-areas: "img name"
+                        "img description";
+
+    align-items: center;
+    align-content: center;
+
+    padding: 0px 25px;
+}
+.option.four .option-selector {
+    top: 50%;
+    transform: translateY(-50%);
+}
+.option.four img {
+    height: 40px;
+}
+
+.option.just-description {
+    grid-template-rows: min-content 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: "name"
+                        "description";
+    align-items: center;
+}
