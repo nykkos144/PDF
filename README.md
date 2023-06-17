@@ -3,7 +3,7 @@
 
 ## After `npm install`
   ## -> `node_modules/ngx-electron/lib/electron.service.d`
-      ## -> comment out `readonly remote: Electron.Remote;`
+  ## -> comment out `readonly remote: Electron.Remote;`
 
 
 
