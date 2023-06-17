@@ -1,5 +1,14 @@
 # PdfWiz
 
+
+## After `npm install`
+  ## -> `node_modules/ngx-electron/lib/electron.service.d`
+      ## -> comment out `readonly remote: Electron.Remote;`
+
+
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.7.
 
 ## Development server
