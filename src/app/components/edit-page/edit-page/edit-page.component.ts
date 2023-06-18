@@ -172,6 +172,7 @@ export class EditPageComponent {
 
   @ViewChild('selector') selector : any;
   selecting : boolean = false;
+  resizing : boolean = false;
 
   selectorLeft : number = 0;
   selectorTop : number = 0;
@@ -180,6 +181,8 @@ export class EditPageComponent {
 
   startLeft : number = 0;
   startTop : number = 0;
+
+  currShape = 0;
 
   handleMouseDown = (event : any, index : number) => {
 
@@ -190,9 +193,21 @@ export class EditPageComponent {
     this.selectorLeft = event.clientX;
     this.selectorTop = event.clientY;
 
+    console.log('selectring')
+
   }
   handleMouseMove = (event : any, index : number) => {
     
+    if (this.resizing) {
+      console.log('resizing move');
+
+      this.pages[index].shapes[this.currShape].x -= 1;
+      this.pages[index].shapes[this.currShape].y -= 1;
+      this.pages[index].shapes[this.currShape].width += 1;
+      this.pages[index].shapes[this.currShape].height += 1;
+      return;
+    }
+
     if (!this.selecting) return;
     
     this.selectorWidth = Math.abs(this.selectorLeft - event.clientX);
@@ -201,11 +216,21 @@ export class EditPageComponent {
   }
   handleMouseUp = (event : any, index : number) => {
 
+    if (this.resizing) {
+      console.log('resizing up')
+      this.resizing = false;
+      return;
+    }
+
     this.selecting = false;
+
     this.selectorLeft = 0;
     this.selectorTop = 0;
     this.selectorWidth = 0;
     this.selectorHeight = 0;
+
+    // this.startLeft = 0;
+    // this.startTop = 0;
 
     const currLeft = event.clientX - event.currentTarget.parentElement.offsetLeft;
     const currTop = event.clientY - event.currentTarget.parentElement.offsetTop + event.currentTarget.parentElement.parentElement.scrollTop;
@@ -240,6 +265,19 @@ export class EditPageComponent {
     // this.pages = [];
     // this.numPages = 0;
     // this.renderPDF();
+  }
+
+
+  handleBoxMouseDown = (event : any, pageIndex : number, boxIndex : number) => {
+
+    event.stopPropagation();
+    event.preventDefault();
+
+    this.resizing = true;
+
+    console.log(pageIndex, boxIndex)
+    this.currShape = boxIndex;
+
   }
 
 

@@ -262,10 +262,62 @@
     // background-color: #202020;
 }
 
+.showcase-box-container {
+    position: absolute;
+
+    width: fit-content;
+    height: fit-content;
+}
+.showcase-box {
+    position: relative;
+    cursor: move;
+
+    width: fit-content;
+    height: fit-content;
+    outline: 1px solid blue;
+}
+
+.showcase-box-resizer {
+    position: absolute;
+    
+    width: 5px;
+    height: 5px;
+
+    background-color: white;
+    outline: 1px solid blue;
+}
+.showcase-box-resizer.tl {
+    cursor: nw-resize;
+    top: -2px;
+    left: -2px;
+}
+.showcase-box-resizer.tr {
+    cursor: ne-resize;
+    top: -2px;
+    right: -2px;
+}
+.showcase-box-resizer.bl {
+    cursor: sw-resize;
+    bottom: -2px;
+    left: -2px;
+}
+.showcase-box-resizer.br {
+    cursor: se-resize;
+    bottom: -2px;
+    right: -2px;
+}
+
+
+.shape {
+    pointer-events: none;
+    background: none;
+    border: 5px solid red;
+}
+
+
 .showcase-shape {
     // pointer-events: none;
     cursor: pointer;
-    pointer-events: auto;
 
     position: absolute;
     // background-color: rgba($color: red, $alpha: 1);
@@ -273,11 +325,9 @@
     border: 5px solid red;
 }
 .showcase-shape:hover {
-    // outline: 2px solid var(--main-color);
     outline: 3px solid red;
     outline-offset: 3px;
 }
-
 
 .showcase-text {
 

@@ -72,9 +72,28 @@
                     {{ item.text }}
                 </div>
 
-                <div *ngFor="let shape of page.shapes" class="showcase-shape rect" [ngStyle]="{'left.px': shape.x, 'top.px': shape.y, 'width.px': shape.width, 'height.px': shape.height}">
-                <!-- <div *ngFor="let shape of page.shapes" class="showcase-shape rect" [ngStyle]="{'left': shape.x}"> -->
+                <!-- <div *ngFor="let shape of page.shapes" class="showcase-shape rect" [ngStyle]="{'left.px': shape.x, 'top.px': shape.y, 'width.px': shape.width, 'height.px': shape.height}">
                     {{ shape.x }} {{ shape.y }} {{ shape.width }} {{ shape.height }}
+                </div> -->
+
+                <!-- <div *ngFor="let box of page.shapes" class="showcase-box" [ngStyle]="{'left.px': box.x, 'top.px': box.y}">
+                    <div class="shape" [ngStyle]="{'width.px': box.width, 'height.px': box.height}">
+
+                    </div>
+                </div> -->
+
+                <div *ngFor="let box of page.shapes; let boxIndex = index" class="showcase-box-container" [ngStyle]="{'left.px': box.x, 'top.px': box.y}">
+                    <div class="showcase-box">
+
+                        <div class="showcase-box-resizer tl" (mousedown)="handleBoxMouseDown($event, index, boxIndex)"></div>
+                        <div class="showcase-box-resizer tr"></div>
+                        <div class="showcase-box-resizer bl"></div>
+                        <div class="showcase-box-resizer br"></div>
+
+                        <div class="shape" [ngStyle]="{'width.px': box.width, 'height.px': box.height}">
+    
+                        </div>
+                    </div>
                 </div>
                 
             </div>
